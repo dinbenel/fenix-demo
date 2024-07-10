@@ -14,7 +14,7 @@ const MainNavigation = () => {
   return (
     <NavigationContainer>
       <SafeAreaView className="flex-1">
-        <Stack.Navigator initialRouteName="Home">
+        <Stack.Navigator initialRouteName="Login">
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Login" component={Login} />
         </Stack.Navigator>
