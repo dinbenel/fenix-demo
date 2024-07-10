@@ -14,7 +14,6 @@ export interface IPokemon {
   abilities: Ability2[];
   height: number;
   id: number;
-  is_default: boolean;
   moves: Move[];
   name: string;
   order: number;

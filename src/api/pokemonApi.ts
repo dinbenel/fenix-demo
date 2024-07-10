@@ -8,7 +8,6 @@ export const fetchPokemon = async () => {
   for (let poke of data.results) {
     pokesPrm.push(axiosClient.get<IPokemon>(poke.url));
   }
-
-  const res = await Promise.allSettled(pokesPrm);
+  const res = await Promise.all(pokesPrm);
   return res;
 };

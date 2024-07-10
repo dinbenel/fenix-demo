@@ -13,6 +13,7 @@ import {useAppDispatch} from '../../../hooks/useAppDispatch';
 import {loginUser} from '../../../store/thunk/userThunk';
 import {useAppSelector} from '../../../hooks/useAppSelector';
 import {navigate} from '../../../navigation/MainNavigation';
+import LoadingSpinner from '../../../shared/LoadingSpinner/LoadingSpinner';
 
 const LoginForm = () => {
   const nav = navigate();
@@ -40,7 +41,8 @@ const LoginForm = () => {
     }
   };
 
-  if (loading) return <Text>Loading...</Text>;
+  if (loading) return <LoadingSpinner />;
+
   return (
     <View className="flex-1">
       <Text className="text-xl font-bold text-center mt-2 capitalize">

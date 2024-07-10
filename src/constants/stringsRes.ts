@@ -4,3 +4,8 @@ export const loginPageStr = {
   emailInputLabel: 'email',
   passwordInputLabel: 'password',
 } as const;
+
+export const pokemonListStr = {
+  title: 'pokemon list',
+  subTitle: 'choose your favorite',
+} as const;

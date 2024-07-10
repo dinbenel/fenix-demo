@@ -4,26 +4,43 @@ import {FC, useEffect} from 'react';
 import {useAppDispatch} from '../../../hooks/useAppDispatch';
 import {getPokemon} from '../../../store/thunk/pokemonThunk';
 import {useAppSelector} from '../../../hooks/useAppSelector';
+import LoadingSpinner from '../../../shared/LoadingSpinner/LoadingSpinner';
+import PokemonCard from './PokemonCard';
+import PokeBallSvg from '../../../shared/Svg/PokeballSvg';
+import Spacer from '../../../shared/Spacer/Spacer';
+import PokemonEmptyList from './PokemonEmptyList';
+import {pokemonListStr} from '../../../constants/stringsRes';
 
 const PokemonList = () => {
   const dispatch = useAppDispatch();
-  const {isLoading, pokemon} = useAppSelector(state => ({
-    isLoading: state.pokemon.isLoading,
-    pokemon: state.pokemon.pokemon,
-  }));
+  const pokemon = useAppSelector(state => state.pokemon.pokemon);
+  const isLoading = useAppSelector(state => state.pokemon.isLoading);
 
   useEffect(() => {
     dispatch(getPokemon());
   }, []);
 
-  if (isLoading) return <Text>Loading.....</Text>;
-
   return (
-    <View>
-      <Text>PokemonList</Text>
+    <View className="items-center">
+      <Spacer />
+      <PokeBallSvg />
+      <Spacer />
+      <Text className="text-foreground capitalize text-3xl">
+        {pokemonListStr.title}
+      </Text>
+      <Text className="text-foreground text-xl font-light">
+        {pokemonListStr.subTitle}
+      </Text>
+      <Spacer />
       <FlatList
+        ListEmptyComponent={<PokemonEmptyList isLoading={isLoading} />}
+        horizontal={true}
         data={pokemon}
-        renderItem={({item}) => <Text>{item.name}</Text>}
+        keyExtractor={item => `${item.id}-${item.order}`}
+        renderItem={({item}) => {
+          return <PokemonCard pokemon={item} />;
+        }}
+        ItemSeparatorComponent={() => <View className="w-2" />}
       />
     </View>
   );

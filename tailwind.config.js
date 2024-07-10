@@ -13,6 +13,8 @@ module.exports = {
         },
         destructive: '#f87171',
         border: '#d1d5db',
+        background: '#18181b',
+        foreground: '#f1f5f9',
       },
     },
   },

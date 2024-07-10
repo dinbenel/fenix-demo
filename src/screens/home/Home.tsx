@@ -1,9 +1,10 @@
 import {View} from 'react-native';
-import PokemonList from './components/pokemonList';
+import PokemonList from './components/PokemonList';
+import PokeBallSvg from '../../shared/Svg/PokeballSvg';
 
 const Home = () => {
   return (
-    <View className="bg-red-400">
+    <View className="flex-1 p-2 bg-background">
       <PokemonList />
     </View>
   );
