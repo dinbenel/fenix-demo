@@ -7,7 +7,6 @@
 - [About the Project](#about-the-project)
 - [Installation](#installation)
 - [Usage](#usage)
-- [License](#license)
 
 ## About the Project
 
@@ -53,7 +52,7 @@ npm install
 yarn install
 ```
 
-4. Running the app
+### Usage
 
 - Start the Metro Bundler
 
