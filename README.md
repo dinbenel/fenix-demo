@@ -34,9 +34,11 @@ To get a local copy up and running, follow these simple steps:
 ### Setup
 
 1. Clone the repo
-   ```sh
-   git clone https://github.com/your_username/your_repo_name.git
-   ```
+
+```sh
+git clone https://github.com/your_username/fenix-demo.git
+```
+
 2. Navigate to the project directory
 
 ```sh
@@ -64,5 +66,5 @@ yarn | npm start
 ```sh
 yarn | npm android
 # for ios
-yarn ios
+yarn | npm ios
 ```
