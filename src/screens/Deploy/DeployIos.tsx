@@ -3,7 +3,9 @@ import DeployText from './components/DeployText';
 
 const DeployIos = () => {
   return (
-    <ScrollView automaticallyAdjustContentInsets>
+    <ScrollView
+      automaticallyAdjustContentInsets
+      className="flex-1 bg-background">
       <View className="p-4">
         <DeployText type="title">Deploying React Native App for iOS</DeployText>
         <View className="space-y-2">

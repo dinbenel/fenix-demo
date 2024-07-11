@@ -1,9 +1,15 @@
+import {FC} from 'react';
 import Svg, {Path} from 'react-native-svg';
 
-const PokeBallSvg = () => (
+type Props = {
+  height?: string;
+  width?: string;
+};
+
+const PokeBallSvg: FC<Props> = ({height = '120px', width = '120px'}) => (
   <Svg
-    height="120px"
-    width="120px"
+    height={height}
+    width={width}
     id="Layer_1"
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"

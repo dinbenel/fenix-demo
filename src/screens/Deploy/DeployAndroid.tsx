@@ -3,7 +3,9 @@ import DeployText from './components/DeployText';
 
 const DeployAndroid = () => {
   return (
-    <ScrollView automaticallyAdjustContentInsets>
+    <ScrollView
+      automaticallyAdjustContentInsets
+      className="flex-1 bg-background">
       <View className="p-2">
         <DeployText type="title">
           Deploying React Native App for Android

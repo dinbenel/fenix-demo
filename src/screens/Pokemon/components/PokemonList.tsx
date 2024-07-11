@@ -1,15 +1,13 @@
-import {View, Text, FlatList} from 'react-native';
-import {IPokemon} from '../../../types/pokemon.type';
-import {FC, useEffect} from 'react';
-import {useAppDispatch} from '../../../hooks/useAppDispatch';
-import {getPokemon} from '../../../store/thunk/pokemonThunk';
-import {useAppSelector} from '../../../hooks/useAppSelector';
-import LoadingSpinner from '../../../shared/LoadingSpinner/LoadingSpinner';
-import PokemonCard from './PokemonCard';
-import PokeBallSvg from '../../../shared/Svg/PokeballSvg';
-import Spacer from '../../../shared/Spacer/Spacer';
-import PokemonEmptyList from './PokemonEmptyList';
+import {useEffect} from 'react';
+import {FlatList, Text, View} from 'react-native';
 import {pokemonListStr} from '../../../constants/stringsRes';
+import {useAppDispatch} from '../../../hooks/useAppDispatch';
+import {useAppSelector} from '../../../hooks/useAppSelector';
+import Spacer from '../../../shared/Spacer/Spacer';
+import PokeBallSvg from '../../../shared/Svg/PokeballSvg';
+import {getPokemon} from '../../../store/thunk/pokemonThunk';
+import PokemonCard from './PokemonCard';
+import PokemonEmptyList from './PokemonEmptyList';
 
 const PokemonList = () => {
   const dispatch = useAppDispatch();
