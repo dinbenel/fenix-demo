@@ -1,51 +1,45 @@
-import {useForm, Controller, SubmitHandler} from 'react-hook-form';
-import {View, Text, TouchableOpacity} from 'react-native';
 import {zodResolver} from '@hookform/resolvers/zod';
+import {useState} from 'react';
+import {Controller, SubmitHandler, useForm} from 'react-hook-form';
+import {Text, View} from 'react-native';
+import {loginPageStr} from '../../../constants/stringsRes';
+import {useAppDispatch} from '../../../hooks/useAppDispatch';
+import AppModal from '../../../shared/AppModal/AppModal';
+import Button from '../../../shared/Button/Button';
+import Spacer from '../../../shared/Spacer/Spacer';
+import FormTextInput from '../../../shared/TextInput/FormTextInput';
+import {loginUserData} from '../../../store/slices/userSlice';
 import {
   loginFormSchema,
   LoginFormState,
 } from '../../../validations/userFormSchema';
-import {loginPageStr} from '../../../constants/stringsRes';
-import FormTextInput from '../../../shared/TextInput/FormTextInput';
-import Spacer from '../../../shared/Spacer/Spacer';
-import Button from '../../../shared/Button/Button';
-import {useAppDispatch} from '../../../hooks/useAppDispatch';
-import {loginUser} from '../../../store/thunk/userThunk';
-import {useAppSelector} from '../../../hooks/useAppSelector';
-import {navigate} from '../../../navigation/MainNavigation';
-import LoadingSpinner from '../../../shared/LoadingSpinner/LoadingSpinner';
+import LoginModal from './LoginModal';
 
 const LoginForm = () => {
-  const nav = navigate();
   const dispatch = useAppDispatch();
-  const loading = useAppSelector(state => state.user.isLoading);
-  const user = useAppSelector(state => state.user.user);
-  const err = useAppSelector(state => state.user.error);
+  const [isShow, setIsShow] = useState<boolean>(false);
 
   const {
     control,
     formState: {errors},
     handleSubmit,
+    reset,
   } = useForm<LoginFormState>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
       email: '',
-      password: '',
+      phone: '',
     },
   });
 
   const onSubmit: SubmitHandler<LoginFormState> = data => {
-    dispatch(loginUser(data));
-    if (!err) {
-      nav.navigate('Home');
-    }
+    dispatch(loginUserData(data));
+    setIsShow(true);
   };
 
-  if (loading) return <LoadingSpinner />;
-
   return (
-    <View className="flex-1">
-      <Text className="text-xl font-bold text-center mt-2 capitalize">
+    <View className="flex-1 bg-background p-4">
+      <Text className="text-xl font-bold text-center text-foreground mt-2 capitalize">
         {loginPageStr.loginFormTitle}
       </Text>
       <Spacer />
@@ -64,9 +58,9 @@ const LoginForm = () => {
           );
         }}
       />
-      <Spacer />
+      <Spacer padding={1} />
       <Controller
-        name="password"
+        name="phone"
         control={control}
         render={({field}) => {
           return (
@@ -74,16 +68,28 @@ const LoginForm = () => {
               onChange={value => field.onChange(value)}
               value={field.value}
               error={errors[field.name]?.message}
-              label={loginPageStr.passwordInputLabel}
+              label={loginPageStr.phoneInputLabel}
               onBlur={field.onBlur}
             />
           );
         }}
       />
-      <Spacer />
-      <Button onPress={handleSubmit(onSubmit)}>
-        <Text>{loginPageStr.submitBtn}</Text>
+      <Spacer padding={2} />
+      <Button
+        onPress={handleSubmit(onSubmit)}
+        styles="bg-rose-500 p-2 items-center rounded-md">
+        <Text className="text-foreground text-lg capitalize">
+          {loginPageStr.submitBtn}
+        </Text>
       </Button>
+      <AppModal visible={isShow}>
+        <LoginModal
+          onPress={() => {
+            setIsShow(false);
+            reset();
+          }}
+        />
+      </AppModal>
     </View>
   );
 };

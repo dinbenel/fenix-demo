@@ -25,10 +25,12 @@ const FormTextInput: FC<Props> = ({
   const errStyle = error ? 'border-destructive' : 'border-gray-300';
   return (
     <View className="flex flex-col gap-2">
-      <Text className="capitalize font-medium text-base">{label}</Text>
+      <Text className="capitalize font-medium text-base text-foreground">
+        {label}
+      </Text>
       <View>
         <TextInput
-          className={`border p-1 text-black/50 ${errStyle}`}
+          className={`border p-1  rounded-md text-black/50 bg-foreground ${errStyle}`}
           onBlur={onBlur}
           onChangeText={onChange}
           value={value}

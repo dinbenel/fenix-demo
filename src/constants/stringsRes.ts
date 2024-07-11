@@ -3,6 +3,7 @@ export const loginPageStr = {
   submitBtn: 'submit',
   emailInputLabel: 'email',
   passwordInputLabel: 'password',
+  phoneInputLabel: 'phone number',
 } as const;
 
 export const pokemonListStr = {

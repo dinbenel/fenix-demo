@@ -5,7 +5,7 @@ import LoginForm from './components/LoginForm';
 const Login = () => {
   const nav = navigate();
   return (
-    <View className="flex-1 p-2">
+    <View className="flex-1">
       <LoginForm />
     </View>
   );
