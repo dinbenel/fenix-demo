@@ -35,7 +35,8 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     // Causes issues with package.json "exports"
-    "forceConsistentCasingInFileNames": false
+    "forceConsistentCasingInFileNames": false,
+    "moduleSuffixes": [".ios", ".android", ".native", ""]
   },
   "exclude": ["**/Pods/**"]
 }
